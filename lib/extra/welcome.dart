@@ -20,7 +20,7 @@ class Welcome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Welcome To Your Kanteeen!!",
+              "Welcome To PostsBanao!!",
               style: TextStyle(
                 color:Colors.black,
                 fontSize: 23.0,
