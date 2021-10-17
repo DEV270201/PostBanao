@@ -1,23 +1,51 @@
 import 'package:flutter/material.dart';
-import 'bottomnavbar.dart';
+import '../components/bottomnavbar.dart';
 import 'package:my_navigation/models/post.dart';
-
-class Home extends StatelessWidget {
+import 'package:my_navigation/components/AddPost.dart';
+// Post(title: "Life", desc: "Life is a characteristic that distinguishes physical entities that have biological processes, such as signaling and self-sustaining processes, from those that do not, either because such functions have ceased (they have died), or because they never had such functions and are classified as inanimate.",id:2),
+class Home extends StatefulWidget {
   // const Home({Key? key}) : super(key: key);
 
   //created a list of posts
-  final List<Post> p = [
-     Post(title: "Friendship",desc:"Across individuals of all ages, friendships form, evolve, and sometimes dissolve over time. The length and duration of the various phases of a friendship vary across individuals and circumstances.The formation phase of a friendship is the transition from strangers to acquaintances to friends. During this phase individuals engage in interactions to get to know each other and to forge the affective bond that characterizes a friendship.Although there are many forms of friendship, some of which may vary from place to place, certain characteristics are present in many types of such bonds. Such characteristics include choosing to be with one another, enjoying time spent together, and being able to engage in a positive and supportive role to one another.",id:1),
-     Post(title: "Life", desc: "Life is a characteristic that distinguishes physical entities that have biological processes, such as signaling and self-sustaining processes, from those that do not, either because such functions have ceased (they have died), or because they never had such functions and are classified as inanimate.",id:2),
-  ];
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Post> p = [];
+
+  void initState(){
+    super.initState();
+    setState(() {
+      p.add(Post(title: "Life", desc: "Life is a characteristic that distinguishes physical entities that have biological processes, such as signaling and self-sustaining processes, from those that do not, either because such functions have ceased (they have died), or because they never had such functions and are classified as inanimate.",id:2),);
+    });
+  }
+
+  void addUserPost(Post userPost){
+    setState(() {
+      p.add(userPost);
+    });
+  }
+
+  void _addPost(BuildContext context){
+    showModalBottomSheet(context: context,
+        builder: (_){
+           return InkWell(
+             child: PostMaker(addUserPost),
+
+             // onTap: (){Navigator.pop(context);
+           );
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("My Posts"),
-        backgroundColor: Colors.red,
-        centerTitle: true,
+        // backgroundColor: Colors.red,
+        // centerTitle: true,
       ),
 
       body: Container(
@@ -28,13 +56,23 @@ class Home extends StatelessWidget {
               Expanded(child: ListView.builder(
                   itemCount: p.length,
                   itemBuilder: (context,index){
-                    return PostDesign(p[index]);
+                    return PostDesign(p[index],index+1);
                   }
               )
               )
             ],
           )
         ),
+      ),
+      //for adding new posts
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){print("hello");
+        _addPost(context);
+        },
+        child: Icon(
+          Icons.add_outlined,
+        ),
+        backgroundColor: Colors.red,
       ),
       //reusing the navigation bar
       bottomNavigationBar: BottomNavbar(0),
@@ -45,7 +83,8 @@ class Home extends StatelessWidget {
 //it will return the design of the post
 class PostDesign extends StatelessWidget {
   final Post pst;
-  PostDesign(this.pst);
+  final int index;
+  PostDesign(this.pst,this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +107,7 @@ class PostDesign extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Post : ${pst.id.toString()}"),
+              Text("Post : $index"),
               Divider(height: 30.0,thickness: 3.0,),
               Text(pst.title,
               style : TextStyle(

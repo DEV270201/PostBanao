@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // import 'Routes/Contact.dart';
 // import 'Routes/About.dart';
 import 'extra/router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main(){
   runApp(
@@ -11,6 +12,17 @@ void main(){
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       onGenerateRoute: MyRoutes.generateRoute,
+      theme: ThemeData(
+        textTheme: GoogleFonts.ubuntuTextTheme(),
+        primaryColor: Colors.red,
+        appBarTheme: AppBarTheme(
+          color: Colors.red,
+          centerTitle: true,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.red
+        ),
+      ),
       // routes : {
       //   "/" : (context)=> Welcome(),
       //   "/home" : (context)=> Home(),

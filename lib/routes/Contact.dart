@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'bottomnavbar.dart';
+import '../components/bottomnavbar.dart';
 
 class Contact extends StatelessWidget {
   const Contact({Key? key}) : super(key: key);
@@ -8,9 +8,7 @@ class Contact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kanteen"),
-        backgroundColor: Colors.red,
-        centerTitle: true,
+        title: Text("My Posts"),
       ),
 
       body: Container(

@@ -26,7 +26,7 @@ class Welcome extends StatelessWidget {
                 fontSize: 23.0,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.italic,
-                decoration: TextDecoration.none
+                decoration: TextDecoration.none,
               ),
             ),
             SizedBox(height: 10.0,),
