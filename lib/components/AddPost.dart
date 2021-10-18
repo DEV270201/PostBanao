@@ -13,9 +13,16 @@ class PostMaker extends StatefulWidget {
 class _PostMakerState extends State<PostMaker> {
   TextEditingController _title = TextEditingController();
   TextEditingController _desc = TextEditingController();
+  bool test=false;
 
   void _addMyPost(BuildContext context){
     print("post added");
+    if(_title.text.trim() == "" || _desc.text.trim() == ""){
+      setState(() {
+        test=true;
+      });
+      return;
+    }
     int generatedID = new Random().nextInt(999999);
     Post temp = Post(title: _title.text,desc: _desc.text,id:generatedID);
     widget.addUserPost(temp);
@@ -38,6 +45,19 @@ class _PostMakerState extends State<PostMaker> {
             decoration: InputDecoration(
               labelText: "Post Title",
               labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
+              errorText: test ? "Invalid Input!!" : null,
+              errorStyle: TextStyle(color: Colors.black),
+              focusedErrorBorder: OutlineInputBorder(
+                //now if you want to change the color of the border than you should use borderside
+                borderSide: BorderSide(
+                    color: Colors.white,
+                    style : BorderStyle.solid,
+                    width : 1.0
+                ),
+                borderRadius: BorderRadius.circular(15.0),
+
+              ),
+              // errorStyle: TextStyle(),
               enabledBorder: OutlineInputBorder(
                 //now if you want to change the color of the border than you should use borderside
                 borderSide: BorderSide(
@@ -69,6 +89,18 @@ class _PostMakerState extends State<PostMaker> {
             decoration: InputDecoration(
               labelText: "Post Description",
               labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
+              errorText: test ? "Invalid Input!!" : null,
+              errorStyle: TextStyle(color: Colors.black),
+              focusedErrorBorder: OutlineInputBorder(
+                //now if you want to change the color of the border than you should use borderside
+                borderSide: BorderSide(
+                    color: Colors.white,
+                    style : BorderStyle.solid,
+                    width : 1.0
+                ),
+                borderRadius: BorderRadius.circular(15.0),
+
+              ),
               enabledBorder: OutlineInputBorder(
                 //now if you want to change the color of the border than you should use borderside
                 borderSide: BorderSide(
