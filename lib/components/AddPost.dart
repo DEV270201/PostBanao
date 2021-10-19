@@ -31,113 +31,122 @@ class _PostMakerState extends State<PostMaker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
-      color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 20.0),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          TextField(
-            style: TextStyle(color: Colors.white),
-            controller: _title,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              labelText: "Post Title",
-              labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
-              errorText: test ? "Invalid Input!!" : null,
-              errorStyle: TextStyle(color: Colors.black),
-              focusedErrorBorder: OutlineInputBorder(
-                //now if you want to change the color of the border than you should use borderside
-                borderSide: BorderSide(
-                    color: Colors.white,
-                    style : BorderStyle.solid,
-                    width : 1.0
-                ),
-                borderRadius: BorderRadius.circular(15.0),
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomPadding: false,
+        body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: bottom),
+        reverse: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.6,
+          color: Theme.of(context).primaryColor,
+          padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 20.0),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              TextField(
+                style: TextStyle(color: Colors.white),
+                controller: _title,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Post Title",
+                  labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
+                  errorText: _title.text.trim().isEmpty && test? "Invalid Input!!" : null,
+                  errorStyle: TextStyle(color: Colors.black),
+                  focusedErrorBorder: OutlineInputBorder(
+                    //now if you want to change the color of the border than you should use borderside
+                    borderSide: BorderSide(
+                        color: Colors.white,
+                        style : BorderStyle.solid,
+                        width : 1.0
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
 
-              ),
-              // errorStyle: TextStyle(),
-              enabledBorder: OutlineInputBorder(
-                //now if you want to change the color of the border than you should use borderside
-                borderSide: BorderSide(
-                    color: Colors.white,
-                    style : BorderStyle.solid,
-                    width : 1.0
-                ),
-                borderRadius: BorderRadius.circular(15.0),
-
-              ),
-
-                focusedBorder: OutlineInputBorder(
-                  //now if you want to change the color of the border than you should use borderside
-                  borderSide: BorderSide(
-                      color: Colors.white,
-                      style : BorderStyle.solid,
-                      width : 1.0
                   ),
-                  borderRadius: BorderRadius.circular(15.0),
+                  // errorStyle: TextStyle(),
+                  enabledBorder: OutlineInputBorder(
+                    //now if you want to change the color of the border than you should use borderside
+                    borderSide: BorderSide(
+                        color: Colors.white,
+                        style : BorderStyle.solid,
+                        width : 1.0
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
 
-                ),
-              ),
-            ),
-          SizedBox(height: 15.0,),
-          TextField(
-            style: TextStyle(color: Colors.white),
-            controller: _desc,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              labelText: "Post Description",
-              labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
-              errorText: test ? "Invalid Input!!" : null,
-              errorStyle: TextStyle(color: Colors.black),
-              focusedErrorBorder: OutlineInputBorder(
-                //now if you want to change the color of the border than you should use borderside
-                borderSide: BorderSide(
-                    color: Colors.white,
-                    style : BorderStyle.solid,
-                    width : 1.0
-                ),
-                borderRadius: BorderRadius.circular(15.0),
-
-              ),
-              enabledBorder: OutlineInputBorder(
-                //now if you want to change the color of the border than you should use borderside
-                borderSide: BorderSide(
-                    color: Colors.white,
-                    style : BorderStyle.solid,
-                    width : 1.0
-                ),
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-                focusedBorder: OutlineInputBorder(
-                  //now if you want to change the color of the border than you should use borderside
-                  borderSide: BorderSide(
-                      color: Colors.white,
-                      style : BorderStyle.solid,
-                      width : 1.0
                   ),
-                  borderRadius: BorderRadius.circular(15.0),
 
+                    focusedBorder: OutlineInputBorder(
+                      //now if you want to change the color of the border than you should use borderside
+                      borderSide: BorderSide(
+                          color: Colors.white,
+                          style : BorderStyle.solid,
+                          width : 1.0
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+
+                    ),
+                  ),
                 ),
-            ),
-          ),
-          SizedBox(height: 15.0,),
-          OutlinedButton(
-            onPressed: (){_addMyPost(context);},
-            child: Text("Add Post",
-            style: TextStyle(color: Colors.white),
-            ),
-            style: OutlinedButton.styleFrom(
-              // primary: Colors.re, //changes the text of the button
-              side: BorderSide(
-                  color: Colors.white,
-                  width: 1.0,
-                  style: BorderStyle.solid
+              SizedBox(height: 15.0,),
+              TextField(
+                style: TextStyle(color: Colors.white),
+                controller: _desc,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Post Description",
+                  labelStyle: TextStyle( fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: Colors.white),
+                  errorText: _desc.text.trim().isEmpty && test? "Invalid Input!!" : null,
+                  errorStyle: TextStyle(color: Colors.black),
+                  focusedErrorBorder: OutlineInputBorder(
+                    //now if you want to change the color of the border than you should use borderside
+                    borderSide: BorderSide(
+                        color: Colors.white,
+                        style : BorderStyle.solid,
+                        width : 1.0
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
+
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    //now if you want to change the color of the border than you should use borderside
+                    borderSide: BorderSide(
+                        color: Colors.white,
+                        style : BorderStyle.solid,
+                        width : 1.0
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                    focusedBorder: OutlineInputBorder(
+                      //now if you want to change the color of the border than you should use borderside
+                      borderSide: BorderSide(
+                          color: Colors.white,
+                          style : BorderStyle.solid,
+                          width : 1.0
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+
+                    ),
+                ),
               ),
-            ),
+              SizedBox(height: 15.0,),
+              OutlinedButton(
+                onPressed: (){_addMyPost(context);},
+                child: Text("Add Post",
+                style: TextStyle(color: Colors.white),
+                ),
+                style: OutlinedButton.styleFrom(
+                  // primary: Colors.re, //changes the text of the button
+                  side: BorderSide(
+                      color: Colors.white,
+                      width: 1.0,
+                      style: BorderStyle.solid
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
