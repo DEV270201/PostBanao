@@ -27,6 +27,13 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void deleteUserPost(int id){
+      print("post deleted");
+      setState(() {
+        p = p.where((post) => post.id != id).toList();
+      });
+  }
+
   void _addPost(BuildContext context){
     showModalBottomSheet(context: context,
         builder: (_){
@@ -54,12 +61,17 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 15.0,),
+              p.length != 0 ?
               Expanded(child: ListView.builder(
                   itemCount: p.length,
                   itemBuilder: (context,index){
-                    return PostDesign(p[index],index+1);
+                    return PostDesign(p[index],index+1,deleteUserPost);
                   }
               )
+              )
+                  : 
+              Image.asset("assets/NoPost.png",
+                height: MediaQuery.of(context).size.height * 0.65,
               )
             ],
           )
@@ -85,7 +97,8 @@ class _HomeState extends State<Home> {
 class PostDesign extends StatelessWidget {
   final Post pst;
   final int index;
-  PostDesign(this.pst,this.index);
+  final Function deleteUserPost;
+  PostDesign(this.pst,this.index,this.deleteUserPost);
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +110,7 @@ class PostDesign extends StatelessWidget {
         Navigator.pushNamed(context, "/home/posts", arguments: pst);
       },
       child: Container(
-        height: 100.0,
+        // height: auto,
         decoration: BoxDecoration(
           color: Colors.amber,
           borderRadius: BorderRadius.circular(10.0)
@@ -117,6 +130,17 @@ class PostDesign extends StatelessWidget {
                 fontSize: 20.0,
               )
               ),
+              OutlinedButton(onPressed: (){
+                deleteUserPost(pst.id);},
+                  child: Text("DELETE"),
+              style: OutlinedButton.styleFrom(
+                backgroundColor : Colors.red,
+                primary: Colors.white,//changes the text of the button
+                  side: BorderSide(
+                      width: 1.0,
+                      style: BorderStyle.solid
+                  ),
+              )),
             ],
           ),
       ),
