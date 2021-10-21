@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../components/bottomnavbar.dart';
+import 'package:my_navigation/components/bottomnavbar.dart';
 import 'package:my_navigation/models/post.dart';
 import 'package:my_navigation/components/AddPost.dart';
 // Post(title: "Life", desc: "Life is a characteristic that distinguishes physical entities that have biological processes, such as signaling and self-sustaining processes, from those that do not, either because such functions have ceased (they have died), or because they never had such functions and are classified as inanimate.",id:2),
 class Home extends StatefulWidget {
   // const Home({Key? key}) : super(key: key);
-
   //created a list of posts
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
   List<Post> p = [];
 
   void initState(){
@@ -49,6 +49,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("My Posts"),

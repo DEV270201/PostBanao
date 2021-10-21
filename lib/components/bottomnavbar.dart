@@ -86,14 +86,11 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   List<String> routes = [
     "/home",
-    "/contact",
+    // "/contact",
     "/about"
   ];
 
   void _changePage(index){
-    // setState(() {
-    //   currentIndex = index;
-    // });
     if(index != currentIndex){
       Navigator.pushNamed(context, routes[index]);
     }
@@ -116,14 +113,14 @@ class _BottomNavbarState extends State<BottomNavbar> {
               activeColor: Colors.lightBlue,
               inactiveColor: Colors.black
           ),
-          BottomNavyBarItem(
-              icon : Icon(
-                  Icons.portrait_outlined
-              ),
-              title: Text("Contacts"),
-              activeColor: Colors.red,
-              inactiveColor: Colors.black
-          ),
+          // BottomNavyBarItem(
+          //     icon : Icon(
+          //         Icons.portrait_outlined
+          //     ),
+          //     title: Text("Contacts"),
+          //     activeColor: Colors.red,
+          //     inactiveColor: Colors.black
+          // ),
           BottomNavyBarItem(
               icon : Icon(
                   Icons.android_outlined

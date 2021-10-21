@@ -33,7 +33,7 @@ class Welcome extends StatelessWidget {
             ElevatedButton(
                 onPressed: (){
                   print("hello");
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushReplacementNamed(context, '/home');
                 },
                 child: Text("Explore!"),
                 style: ElevatedButton.styleFrom(

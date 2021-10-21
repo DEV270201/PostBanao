@@ -13,6 +13,7 @@ void main(){
       initialRoute: '/',
       onGenerateRoute: MyRoutes.generateRoute,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.ubuntuTextTheme(),
         primaryColor: Colors.red,
         appBarTheme: AppBarTheme(

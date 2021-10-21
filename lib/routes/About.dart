@@ -7,16 +7,19 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text("My Posts"),
+        title: Text("About PostBanao"),
       ),
 
       body: Container(
-        child: Center(
-          child: Text("About"),
+        padding: EdgeInsets.all(15.0),
+        child: Text(
+            "PostBanao is a mobile application which helps the user to make their own post. PostBanao is a mobile application which helps the user to make their own post. PostBanao is a mobile application which helps the user to make their own post. PostBanao is a mobile application which helps the user to make their own post.",
+            style: TextStyle(fontSize: 20.0,fontStyle: FontStyle.italic),
         ),
       ),
-      bottomNavigationBar: BottomNavbar(2),
+      bottomNavigationBar: BottomNavbar(1),
     );
   }
 }

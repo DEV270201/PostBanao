@@ -12,15 +12,15 @@ class MyRoutes{
   static Route<dynamic> generateRoute(RouteSettings settings){
     switch(settings.name){
       case "/":
-        return MaterialPageRoute(builder: (_)=> Welcome());
+        return MaterialPageRoute(builder: (context)=> Welcome());
       case "/home":
-        return MaterialPageRoute(builder : (_)=> Home());
+        return MaterialPageRoute(builder : (context)=> Home());
       case "/home/posts":
         //getting the data that passed from the home route
         var data = settings.arguments as Post; //specified the type of the data that is being received
         return MaterialPageRoute(builder : (_)=> PostDetails(data));
-      case "/contact":
-        return MaterialPageRoute(builder: (_)=> Contact());
+      // case "/contact":
+      //   return MaterialPageRoute(builder: (_)=> Contact());
       case "/about":
         return MaterialPageRoute(builder: (_)=> About());
       default:
