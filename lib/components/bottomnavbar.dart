@@ -86,7 +86,6 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   List<String> routes = [
     "/home",
-    // "/contact",
     "/about"
   ];
 
